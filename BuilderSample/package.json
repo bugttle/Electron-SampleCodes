@@ -1,29 +1,32 @@
 {
   "name": "builder-sample",
   "version": "1.0.0",
+  "author": "UQ Times <uqtimes@gmail.com>",
+  "license": "MIT",
   "description": "",
+  "main": "main.js",
+  "build": {
+    "appId": "jp.blogspot.uqtimes.samples.electron",
+    "directories": {
+      "app": "app"
+    },
+    "artifactName": "${productName}_installer.${ext}",
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pack": "npm run pack:mac && npm run pack:win",
     "pack:mac": "./node_modules/.bin/build --mac --x64",
     "pack:win": "./node_modules/.bin/build --win --x64"
   },
-  "author": "uqtimes",
-  "license": "ISC",
-  "build": {
-    "appId": "jp.blogspot.uqtimes.samples.electron",
-    "category": "Development",
-    "mac": {
-      "target": "dmg",
-      "title": "Hello world"
-    },
-    "win": {
-      "target": "nsis",
-      "title": "Hello world"
-    }
-  },
   "devDependencies": {
-    "electron": "^1.4.10",
-    "electron-builder": "^10.5.0"
+    "electron": "^1.6.7",
+    "electron-builder": "^17.5.0"
   }
 }
