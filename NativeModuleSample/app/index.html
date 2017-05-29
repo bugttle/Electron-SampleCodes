@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Native Module - Mandelbrot</title>
+</head>
+<body>
+<div>
+  <button onclick="execute()">Execute</button>
+</div>
+<div>
+  <canvas id="screen" width="640" height="480"></canvas>
+</div>
+<script>
+var {remote} = require('electron');
+var mandelbrot = require('../build/Release/mandelbrot');
+
+function execute() {
+  // Mandelbrot size
+  var width = 640;
+  var height = 480;
+
+  var canvas = document.getElementById('screen');
+  var context = canvas.getContext('2d');
+  var imageData = context.createImageData(width, height);
+
+  // execute Mandelbrot
+  mandelbrot.execute(imageData.data, width, height);
+
+  // render
+  context.putImageData(imageData, 0, 0);
+}
+</script>
+</body>
+</html>
